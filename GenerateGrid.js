@@ -1,3 +1,12 @@
+const initBloc=(targetID, gridID, lineAreaID, lineID)=>{
+	document.getElementById(targetID).innerHTML = `
+	<div id="${gridID}" class="${gridID}"></div>
+        <svg id="${lineAreaID}" class="${lineAreaID}">
+            <polyline id="${lineID}" />
+        </svg>
+	`
+}
+
 const createGrid = (addTo, width, height, size, stroke, color) => {
 	addTo.setAttribute("width", `${width}`)
 	addTo.setAttribute("height", `${height}`)
@@ -46,6 +55,7 @@ const createAxis = (addTo, width, height, size, stroke) => {
 	}
 	context.stroke()
 }
+
 const createText = (addTo, width, height, size, stroke, step) => {
 	addTo.setAttribute("width", `${width}`)
 	addTo.setAttribute("height", `${height}`)
@@ -70,7 +80,6 @@ const createText = (addTo, width, height, size, stroke, step) => {
 	}
 	context.stroke()
 }
-
 
 const tableGrid = (target, width, height, size, stroke, colorMain, colorSub) => {
 	target.setAttribute("style", `
@@ -109,23 +118,30 @@ const drawLine=(lineData, gridWidth, gridHeight, size)=>{
 	}
 	return data
 }
-const calculateEnto=(target, width, height, size, stroke, colorMain, colorSub, graphData)=>{
+
+const calculateEnto=(target, lineAreaID, lineID, width, height, size, stroke, colorMain, colorSub, graphData)=>{
+	
 	tableGrid(target, width, height, size, stroke, colorMain, colorSub)
 
-	const lineArea = document.querySelector("#entoLine")
+	const lineArea = document.querySelector(`#${lineAreaID}`)
 	lineArea.setAttribute("width",width)
 	lineArea.setAttribute("height",height)
-	const entoVal = document.getElementById("line")
+	const entoVal = document.getElementById(lineID)
 	entoVal.setAttribute("style","fill:none;stroke:red;stroke-width:5;")
 	const vals = entoVal.setAttribute("points",`${drawLine(graphData,width,height,size)}`)
 }
 
+
 // test data 
-const testData = [0,1,1,2,2,2,1,1,0,0,0,0,-1,-1,-1,0,0,0,1,1,2]
+const testData = [0,1,1,2,2,2,10,9,9,2,2,1,1,2,2,1,0,0,-1,-1,0]
+initBloc("main","gridArea","entoLine","line")
+
 calculateEnto(
 	target = document.getElementById("gridArea"),
-	width = 400,
-	height = 800,
+	"entoLine",
+	"line",
+	width = 800,
+	height = 1200,
 	size = 40,
 	stroke = 2,
 	colorMain = "#AAA",
