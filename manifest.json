@@ -1,0 +1,7 @@
+{
+"url": "http://test-youtube.s3-website-us-east-1.amazonaws.com",
+"name": "test-youtube",
+"iconUrl": "http://test-youtube.s3-website-us-east-1.amazonaws.com/vercel.svg",
+"termsOfUseUrl": "http://test-youtube.s3-website-us-east-1.amazonaws.com/terms",
+"privacyPolicyUrl": "http://test-youtube.s3-website-us-east-1.amazonaws.com/privacy"
+}
